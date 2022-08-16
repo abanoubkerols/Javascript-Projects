@@ -23,7 +23,7 @@ function hundleSymbol(symbol){
     // }
 
     switch(symbol){
-        case 'C':
+        case 'c':
             buffer = '0';
             runningTotal=0;
             break;
