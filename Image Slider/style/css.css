@@ -1,0 +1,46 @@
+body {
+    background-color:aliceblue;
+}
+
+.item {
+    cursor: pointer;
+
+
+}
+img{
+    border-radius: 20px;
+}
+
+.item .img-caption {
+    bottom: 10px;
+    width: 70%;
+    left: 15%;
+    padding: 5px;
+    text-align: center;
+    border-radius: 20px;
+}
+
+#light-slider-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .5);
+}
+
+
+#light-item {
+    width: 50%;
+    height: 500px;
+    background-image: url(./../portfolio/cabin.png);
+    background-size: 100% ;
+    border-radius: 20px;
+
+
+}
+
+#light-item i {
+    font-size: 30px;
+    cursor: pointer;
+}
