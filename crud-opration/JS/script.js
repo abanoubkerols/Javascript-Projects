@@ -125,7 +125,7 @@ function updataDate(indexUpdate) {
 // search
 function searchByName(userInput) {
   let searchItem = [];
-  for (let i = 0; i < productlist.length; i++) {
+  for (let i = 0; i <  productlist.length; i++) {
     if (productlist[i].name.toLowerCase().includes(userInput.toLowerCase())) {
       productlist[i].newName = productlist[i].name.replace(
         userInput,
