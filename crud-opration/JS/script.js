@@ -127,7 +127,7 @@ function searchByName(userInput) {
   let searchItem = [];
   for (let i = 0; i < productlist.length; i++) {
     if (productlist[i].name.toLowerCase().includes(userInput.toLowerCase())) {
-      productlist[i].newName.toLowerCase() = productlist[i].name.replace(
+      productlist[i].newName = productlist[i].name.replace(
         userInput,
         `<span class="text-danger fw-bold">${userInput}</span>`
       );
