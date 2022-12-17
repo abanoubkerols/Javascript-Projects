@@ -11,6 +11,6 @@ _____________
 [**Click me to show the project**](https://abanoubkerols.github.io/Javascript-Projects/Image%20Slider/)
 
 _______________________
-### Image Slider 
+### crud Opration
 [**Click me to show the project**](https://abanoubkerols.github.io/Javascript-Projects/crud-opration/)
 
