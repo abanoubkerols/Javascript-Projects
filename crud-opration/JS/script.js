@@ -3,11 +3,22 @@ let productPrice = document.getElementById("productPrice");
 let productCatrgory = document.getElementById("productCatrgory");
 var prouductquantity = document.getElementById("prouductquantity");
 let productDesc = document.getElementById("productDesc");
+let create = document.getElementById("create");
+
+
 let mode = "create";
 let global_var;
 
+// events to make ckeck input vildation 
+productName.addEventListener("keydown", validationName)
+productPrice.addEventListener("keydown", validationPrice)
+productCatrgory.addEventListener("keydown", validationCat)
+prouductquantity.addEventListener("keydown", validationQuntity)
+productDesc.addEventListener("keydown", validationDesc)
+
 // declration object for product
 let productlist;
+
 if (localStorage.getItem("productlist") != null) {
   productlist = JSON.parse(localStorage.getItem("productlist"));
 } else {
@@ -23,24 +34,30 @@ function addproduct() {
     desc: productDesc.value,
   };
 
+
   if (mode === "create") {
-    if (validation()) {
+    if (validationAllInputs()) {
       productlist.push(product);
-    
-    } else {
-      alert("invalid enter");
+      clearForm();
     }
   } else {
     productlist[global_var] = product;
+    console.log(global_var);
+
     mode = "create";
     create.innerHTML = "Add Prouduct";
   }
+
   addTolocalStorage();
-  clearForm();
-      displayProduct(productlist);}
+
+  displayProduct(productlist);
+
+
+
+}
 
 // display product
-function displayProduct(list) {
+function displayProduct(list) { 
   let cartona = "";
   let i;
   for (i = 0; i < list.length; i++) {
@@ -51,28 +68,30 @@ function displayProduct(list) {
                     <td>${list[i].category}</td>
                     <td id="test" >${list[i].qunt}</td>
                     <td>${list[i].desc}</td>
-                    <td><button onclick="updateDate(${i})" class="btn btn-warning">Update</button></td>
+                    <td><button onclick="updataDate(${i})" class="btn btn-warning">Update</button></td>
                     <td><button  onclick="Deleteproduct(${i})" class="btn btn-danger">Delete</button></td>
                     <td><button  onclick="selling(${i})" class="btn btn-success">Sell</button></td>
                 </tr>`;
   }
   document.getElementById("show").innerHTML = cartona;
-  var btndel = document.getElementById("deleteAll");
+  let btndel = document.getElementById("deletethem");
   if (productlist.length > 0) {
     btndel.innerHTML = `<button onclick="deleteAll()" class=" w-50 btn-danger text-uppercase  btn mb-5 btn-lg "> delete all (${i})</button>`;
   } else {
-    btndel.innerHTML = "";
+    btndel.innerHTML = " ";
   }
 }
 displayProduct(productlist);
 
 // Deleteproduct
-
 function Deleteproduct(index) {
   productlist.splice(index, 1);
   addTolocalStorage();
   displayProduct(productlist);
 }
+
+
+
 function deleteAll() {
   localStorage.clear();
   productlist.splice(0);
@@ -88,25 +107,27 @@ function clearForm(x) {
   productDesc.value = x ? x.desc : "";
 }
 
-// update product
 
-function updateDate(indexUpdate) {
+
+// update product
+function updataDate(indexUpdate) {
   clearForm(productlist[indexUpdate]);
-  // productName.value=productlist[indexUpdate].name;
-  // productPrice.value=productlist[indexUpdate].price;
-  // productCatrgory.value=productlist[indexUpdate].category;
-  // productDesc.value=productlist[indexUpdate].desc;
-  create.innerHTML = "update";
+
   mode = "update";
+  create.innerHTML = "update"
   global_var = indexUpdate;
+
+
 }
+
+
 
 // search
 function searchByName(userInput) {
   let searchItem = [];
   for (let i = 0; i < productlist.length; i++) {
     if (productlist[i].name.toLowerCase().includes(userInput.toLowerCase())) {
-      productlist[i].newName = productlist[i].name.replace(
+      productlist[i].newName.toLowerCase() = productlist[i].name.replace(
         userInput,
         `<span class="text-danger fw-bold">${userInput}</span>`
       );
@@ -116,7 +137,8 @@ function searchByName(userInput) {
   }
   displayProduct(searchItem);
 }
-searchByName();
+
+
 
 
 // addTolocalStora
@@ -124,47 +146,99 @@ function addTolocalStorage() {
   localStorage.setItem("productlist", JSON.stringify(productlist));
 }
 
-function validation() {
-  let regexName = /[a-z]{3,8}$/;
-  let regexPrice= /[0-9]{3}$/;
-  let regexcat=/[a-z0-9]{3,15}$/;
-  let regexquantity = /[0-9]{1}$/;
-  let regexrdesc= /[a-z]{3,20}$/;
-  if (regexName.test(productName.value) && regexPrice.test(productPrice.value) &&regexcat.test(productCatrgory.value) 
-  && regexquantity.test(prouductquantity.value)&&regexrdesc.test(productDesc.value)) {
+
+// validation Functions
+function validationName() {
+  let regexName = /[a-z0-9]{3,8}$/;
+  if (regexName.test(productName.value)) {
     document.getElementById("name-error").classList.add("d-none");
-    document.getElementById("error").classList.add("d-none");
-    document.getElementById("Category").classList.add("d-none");
-    document.getElementById("quantity").classList.add("d-none");
-    document.getElementById("desc").classList.add("d-none");
-
-    return true;
-  } else {
+    return true
+  }
+  else {
     document.getElementById("name-error").classList.remove("d-none");
-    document.getElementById("error").classList.remove("d-none");
-    document.getElementById("Category").classList.remove("d-none");
-    document.getElementById("quantity").classList.remove("d-none");
-    document.getElementById("desc").classList.remove("d-none");
-
-
-    return false;
+    return false
   }
 }
 
+function validationPrice() {
+  let regexPrice = /[0-9]{2,}$/;
+  if (regexPrice.test(productPrice.value)) {
+    document.getElementById("error").classList.add("d-none");
+    return true
+
+  } else {
+    document.getElementById("error").classList.remove("d-none");
+    return false
+
+  }
+
+}
+
+function validationCat() {
+  let regexcat = /[a-z0-9]{3,15}$/;
+  if (regexcat.test(productCatrgory.value)) {
+    document.getElementById("Category").classList.add("d-none");
+    return true
+  } else {
+    document.getElementById("Category").classList.remove("d-none");
+    return false
+  }
+
+}
+
+
+function validationQuntity() {
+  let regexquantity = /[0-9]{1}$/;
+
+
+  if (regexquantity.test(prouductquantity.value)) {
+    document.getElementById("quantity").classList.add("d-none");
+    return true
+  } else {
+    document.getElementById("quantity").classList.remove("d-none");
+    return false
+  }
+}
+
+
+
+function validationDesc() {
+  let regexrdesc = /[a-z]{3,20}$/;
+  if (regexrdesc.test(productDesc.value)) {
+    document.getElementById("desc").classList.add("d-none");
+    return true
+  } else {
+    document.getElementById("desc").classList.remove("d-none");
+    return false
+  }
+}
+
+
+function validationAllInputs() {
+  validationCat()
+  validationDesc()
+  validationName()
+  validationPrice()
+  validationQuntity()
+  if (validationName() == true && validationPrice() == true && validationCat() == true && validationDesc() == true && validationQuntity() == true) {
+    document.getElementById("fill-data").classList.add("d-none");
+    return true
+
+  } else {
+    document.getElementById("fill-data").classList.remove("d-none");
+    return false
+  }
+
+
+}
+
 function selling(i) {
-  // var cartona
-  // var num = prouductquantity.value;
-  // num = num - 1;
   let x = document.getElementById("test");
-  // console.log(--(productsList[i].qunt))
-
-  // cartona += ` <tr>
-  //     <td >${--(productsList[i].qunt)}</td>
-
-  // </tr>`
-  //
-  console.log(x);
   x.innerHTML = --productlist[i].qunt;
   addTolocalStorage();
   displayProduct(productlist);
 }
+
+
+
+
