@@ -1,7 +1,7 @@
 
 function getPosts(userId) {
     let request = new XMLHttpRequest()
-    request.open("GET", `http://jsonplaceholder.typicode.com/posts?userId=${userId}`)
+    request.open("GET", `https://jsonplaceholder.typicode.com/posts?userId=${userId}`)
     request.send()
     request.onload = function () {
         if (request.status >= 200 && request.status < 300) {
@@ -33,7 +33,7 @@ function getPosts(userId) {
 
 function getUsers() {
    let  request = new XMLHttpRequest()
-    request.open("GET", "http://jsonplaceholder.typicode.com/users")
+    request.open("GET", "https://jsonplaceholder.typicode.com/users")
     request.send()
     request.onload = function () {
         if (request.status >= 200 && request.status < 300) {
