@@ -13,6 +13,9 @@ _____________
 _______________________
 ### crud Opration
 [**Click me to show the project**](https://abanoubkerols.github.io/Javascript-Projects/crud-opration/)
+_______________________
+### JsonPlaceholder API
+[**Click me to show the project**](https://abanoubkerols.github.io/Javascript-Projects/jsonPlaceholder%20API/)
 
 
 
