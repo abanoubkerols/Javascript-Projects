@@ -1,5 +1,5 @@
 body {
-    background-color:aliceblue;
+    background-color: aliceblue;
 }
 
 .item {
@@ -7,7 +7,8 @@ body {
 
 
 }
-img{
+
+img {
     border-radius: 20px;
 }
 
@@ -34,11 +35,14 @@ img{
     width: 50%;
     height: 500px;
     background-image: url(./../portfolio/cabin.png);
-    background-size: 100% ;
+    background-size: 100%;
     border-radius: 20px;
 
 
 }
+
+
+
 
 #light-item i {
     font-size: 30px;

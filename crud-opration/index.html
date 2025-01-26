@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -44,7 +44,7 @@
             <p class="text-danger d-none  mt-2" id="desc">your description is required </p>
 
         </div>
-        <button class="btn btn-outline-info btn-lg" onclick="addproduct()" id="create"> Add Product</button>
+        <button class="btn btn-outline-info btn-lg" onclick="addOrUpdateProduct()" id="create"> Add Product</button>
          <p class="text-danger d-none  mt-2" id="fill-data">Please Fill  all Date </p>
     </div>
     <div class="mx-auto w-50 m-5  ">
@@ -73,6 +73,87 @@
             </tbody>
         </table>
     </div>
+    <script src="JS/script.js"></script>
+</body>
+
+</html> -->
+
+<!-- _________________ -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/bootstrap.min.css">
+    <link rel="stylesheet" href="style/all.min.css">
+    <link rel="shortcut icon" href="favicon-32x32.png" type="image/x-icon">
+    <title>CRUD Operation</title>
+</head>
+
+<body>
+
+    <div class="w-50 mx-auto mt-3">
+        <div class="form-control mb-3">
+            <label for="productName" class="fw-bold">Product Name:</label>
+            <input type="text" class="form-control mt-1" id="productName">
+            <p class="text-danger d-none mt-2" id="name-error">Invalid name (3-30 characters, alphanumeric).</p>
+        </div>
+        <div class="form-control mb-3">
+            <label for="productPrice" class="fw-bold">Product Price:</label>
+            <input type="number" class="form-control mt-1" id="productPrice">
+            <p class="text-danger d-none mt-2" id="price-error">Invalid price (must be a number).</p>
+        </div>
+        <div class="form-control mb-3">
+            <label for="productCategory" class="fw-bold">Product Category:</label>
+            <input type="text" class="form-control mt-1" id="productCategory">
+            <p class="text-danger d-none mt-2" id="category-error">Invalid category (3-30 characters, alphanumeric).</p>
+        </div>
+        <div class="form-control mb-3">
+            <label for="productQuantity" class="fw-bold">Product Quantity:</label>
+            <input id="productQuantity" type="number" class="form-control mt-1">
+            <p class="text-danger d-none mt-2" id="quantity-error">Invalid quantity (must be a number).</p>
+        </div>
+        <div class="form-control mb-3">
+            <label for="productDesc" class="fw-bold">Product Description:</label>
+            <input type="text" class="form-control mt-1" id="productDesc">
+            <p class="text-danger d-none mt-2" id="desc-error">Invalid description (3-100 characters).</p>
+        </div>
+        <button class="btn btn-outline-info btn-lg" onclick="addOrUpdateProduct()" id="create">Add Product</button>
+        <p class="text-danger d-none mt-2" id="fill-data-error">Please fill all fields correctly.</p>
+    </div>
+
+    <div class="mx-auto w-50 mt-5">
+        <label for="search" class="fw-bold">Search</label>
+        <input placeholder="Search By Name" oninput="searchByName(this.value)" type="text" id="search" class="mt-2 form-control">
+    </div>
+
+    <div class="w-75 mx-auto mt-5">
+        <div id="deleteAll" class="text-center"></div>
+
+        <table class="table text-center">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Product Name</th>
+                    <th>Product Price</th>
+                    <th>Product Category</th>
+                    <th>Product Quantity</th>
+                    <th>Product Description</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                    <th>Sell</th>
+                </tr>
+            </thead>
+            <tbody id="show">
+                <!-- Product rows will be displayed here -->
+            </tbody>
+        </table>
+    </div>
+
     <script src="JS/script.js"></script>
 </body>
 
